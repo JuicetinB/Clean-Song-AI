@@ -15,7 +15,7 @@ pip install yt-dlp
 ```
 FFmpeg
 
-This program is only tested on windows but might work on other platforms.
+This program is only tested on windows but might work on other platforms. This is able to run on my personal laptop with 4gb of vram, but you may need to set a smaller whisper model with `-m` if you have less vram
 
 ## Main.py
 Has the ability to use yt-dlp, Demucs, and Whisper to clean a song given a link, a list of links, a path to a song, or, without any relevant arguments, a fileprompt to select songs. Resulting clean songs are placed in the current directory.
