@@ -6,7 +6,7 @@ from filter import censor_list
 
 def identify(vocal,model="small.en",padding=.05):
     model = whisper.load_model(model)
-    output = model.transcribe(vocal, word_timestamps=True,prepend_punctuations="",append_punctuations="")
+    output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.3)
     lyrics = []
     print('AI generated lyrics:', output['text'])
     for i in output['segments']:

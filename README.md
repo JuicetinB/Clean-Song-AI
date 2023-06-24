@@ -24,13 +24,13 @@ py [path]/main.py
 ```
 prompts for file selection
 ```
-py [path]/main.py --link https://www.youtube.com/[video]
+py [path]/main.py --link "https://www.youtube.com/[video]"
 ```
-downloads the video
+downloads the video. Also supports multiple links or links to albums or playlists. Just use quotes because "&" can act wierd in terminals.
 ```
 py [path]/main.py --song [song path]
 ```
-uses the song
+uses the song file
 ```
 py [path]/main.py --help
 ```
