@@ -5,11 +5,11 @@ This program combines ai vocal remover and automatic speech recognition software
 ```
 pip install git+https://github.com/openai/whisper.git
 ```
-[Demucs](https://github.com/facebookresearch/demucs) from Facebookresearch
+[Demucs](https://github.com/facebookresearch/demucs) from Meta Research
 ```
 pip install -U demucs
 ```
-(Optional) [yt-dlp](https://github.com/yt-dlp)
+[yt-dlp](https://github.com/yt-dlp) (Optional; required for -l or --link argument)
 ```
 pip install yt-dlp
 ```
