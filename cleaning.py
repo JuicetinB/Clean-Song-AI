@@ -29,6 +29,8 @@ parser.add_argument('--format', dest='format', type=str, nargs=1,
                     help='the format of the output ex. wav (default: flac)', default='flac', action='store')
 parser.add_argument('-m', '--model', dest='model', type=str,
                     help='the model ex. tiny, tiny.en, base.en, base (default: small.en)', default='small.en', action='store')
+parser.add_argument('-l', '--lyrics', dest='lyrics', type=str,
+                    help='experimental input prompt for whisper', default=None, action='store')
 args = parser.parse_args()
 folder=" ".join(args.folder)
 print(f'searching {folder} for 3 audio files')
@@ -49,7 +51,7 @@ for name in audiofiles:
     else:
         music['original']=os.path.join(folder,name)
 model = whisper.load_model(args.model)
-output = model.transcribe(music['vocal'], word_timestamps=True,prepend_punctuations="",append_punctuations="")
+output = model.transcribe(music['vocal'], word_timestamps=True,prepend_punctuations="",append_punctuations="", initial_prompt=args.lyrics)
 lyrics = []
 print('AI generated lyrics:', output['text'])
 for i in output['segments']:

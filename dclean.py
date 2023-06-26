@@ -1,12 +1,12 @@
 import whisper
-from pydub import AudioSegment
+from pydub import AudioSegment, effects
 import sys
 import os
 from filter import censor_list
 
 def identify(vocal,model="small.en",padding=.05):
     model = whisper.load_model(model)
-    output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.3)
+    output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.6)
     lyrics = []
     print('AI generated lyrics:', output['text'])
     for i in output['segments']:
@@ -33,3 +33,14 @@ def clean(full,novocal,times,_format):
         censored=backing[start:end]
         clean=clean[:start]+censored+clean[end:]
         clean.export((full.rsplit('.', 1))[0]+f' clean.{_format}',format=_format)
+
+def overwrite_normalized(vocal):
+    unn = AudioSegment.from_file(vocal)
+    #comp = effects.compress_dynamic_range(unn, ratio=12, threshold= -30)
+    norm = effects.normalize(unn)
+    norm.export(vocal, format = 'wav')
+    print(vocal, "volume normalized")
+
+    #audio preprocessing seems to not be necessary
+    
+#big idea: use the lyrics as the initial prompt

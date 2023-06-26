@@ -34,6 +34,7 @@ else:
 
 def cleansong(song):
     novocals , vocals = dsep.vocals(song)
+    #dclean.overwrite_normalized(vocals)
     times = dclean.identify(vocals, args.model, args.padding)
     dclean.clean(song, novocals, times, args.format)
 
