@@ -39,4 +39,4 @@ def get_lyrics(link):
 #I could make my own space, but I need to check demucs -d cpu performance
 #https://mvsep.com/ is a good site
 
-get_lyrics("https://music.youtube.com/watch?v=ir98TwbImtQ&feature=share")
+#get_lyrics("https://music.youtube.com/watch?v=ir98TwbImtQ&feature=share")
