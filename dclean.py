@@ -1,5 +1,5 @@
 import whisper
-from pydub import AudioSegment, effects
+from pydub import AudioSegment, silence
 import sys
 import os
 from filter import censor_list
@@ -34,13 +34,37 @@ def clean(full,novocal,times,_format):
         clean=clean[:start]+censored+clean[end:]
         clean.export((full.rsplit('.', 1))[0]+f' clean.{_format}',format=_format)
 
-def overwrite_normalized(vocal):
-    unn = AudioSegment.from_file(vocal)
-    #comp = effects.compress_dynamic_range(unn, ratio=12, threshold= -30)
-    norm = effects.normalize(unn)
-    norm.export(vocal, format = 'wav')
-    print(vocal, "volume normalized")
+def remove_silence(vocal, padding=50):
+    raw = AudioSegment.from_file(vocal)
+    #makes list of start and end times; st for silent times
+    st = silence.detect_silence(raw, min_silence_len=2000, silence_thresh=-30)
+    #adds length; total silent time; adjusted time in output file
+    i=0
+    totals=0
+    gap = AudioSegment.silent(duration=padding)
+    while i<len(st):
+        length=st[i][1]-st[i][0]-padding
+        #st[i][2] is the length of the silent that gets cut from this segment
+        st[i].append(length)
+        #time of cut in output audio file
+        ostart=st[i][0]-totals
+        st[i].append(ostart)
+        #takes out a silent segment while totals accounts for previous segments taken out; st[i][1]-totals is the same as st[i][3]+length
+        raw = raw[:ostart]+ gap + raw[st[i][1]-totals:]
+        totals+=length
+        i+=1
+    #find some way to offset whisper output times by all the silent sections before them
+    #make a list of the times in the output vocal file with silence cut out; if whisperstarttime>x, add sum of all silent sections before time to time
+    raw.export(vocal, format = 'wav')
+    return st
 
-    #audio preprocessing seems to not be necessary
-    
-#big idea: use the lyrics as the initial prompt
+def timeadjust(times : list, st : list):
+    for segments in times:
+        for silence in st:
+            if segments[1]>=silence[0]:
+                segments[0]+=silence[2]
+                segments[1]+=silence[2]
+            else:
+                break
+    return times
+#idea: use the lyrics as the initial prompt; update: didn't improve
