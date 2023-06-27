@@ -9,6 +9,17 @@ pip install git+https://github.com/openai/whisper.git
 ```
 pip install -U demucs
 ```
+For CUDA and gpu support
+[PyTorch](https://pytorch.org/get-started/locally/)
+You may want to build from source if on the latest release of CUDA
+Example install for CUDA version 11.8 on Windows
+[CUDA 11.8 download](https://developer.nvidia.com/cuda-11-8-0-download-archive)
+```
+pip uninstall torch torchaudio
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+Alternatively, I believe these programs can detect if there's only a cpu in the system
+
 [yt-dlp](https://github.com/yt-dlp) (Optional; required for -l or --link argument)
 ```
 pip install yt-dlp

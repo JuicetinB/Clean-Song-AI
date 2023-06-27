@@ -3,9 +3,19 @@ from pydub import AudioSegment, silence
 import sys
 import os
 from filter import censor_list
+import torch
+import gc
 
 def identify(vocal,model="small.en",padding=.05):
     model = whisper.load_model(model)
+    times = identifynomodel(model,vocal,padding)
+    del(model)
+    torch.cuda.empty_cache()
+    gc.collect()
+    return times
+
+
+def identifynomodel(model, vocal, padding=.05):
     output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.6)
     lyrics = []
     print('AI generated lyrics:', output['text'])
@@ -23,6 +33,7 @@ def identify(vocal,model="small.en",padding=.05):
             else:
                 times.append([int((n["start"]-padding)*1000),int((n["end"]+padding)*1000)])
     return times
+
 def clean(full,novocal,times,_format):
     mainaudio = AudioSegment.from_file(full)
     backing = AudioSegment.from_file(novocal)

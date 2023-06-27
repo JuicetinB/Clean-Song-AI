@@ -4,6 +4,8 @@ import dclean
 import tkinter as tk
 from tkinter import filedialog
 import dlp
+import whisper
+import gc
 
 parser = argparse.ArgumentParser(prog='Song cleaning tool', description='Provide a song and most swear words will be censored')
 parser.add_argument('-s', '--song','--path', dest='song', type=str, 
@@ -32,15 +34,40 @@ else:
     songs = [args.song]
     songs = songs + dlp.download(args.links)
 
-def cleansong(song):
-    novocals , vocals = dsep.vocals(song)
-    st = dclean.remove_silence(vocals, (args.padding*1000))
-    times = dclean.identify(vocals, args.model, args.padding)
-    times = dclean.timeadjust(times,st)
-    dclean.clean(song, novocals, times, args.format)
-
-count=0
-for song in songs:
-    count+=1
-    print(f"Cleaning song {count} of {len(songs)}")
-    cleansong(song)
+def cleansongmemory(songs):
+    print("creating all splits first")
+    #4 variables to store in lists: novocals, vocals, st, times
+    novocals, vocals, sts, times = [], [], [], []
+    count = range(len(songs))
+    print("separating all songs")
+    for i in count:
+        novocal , vocal = dsep.vocals(songs[i])
+        novocals.append(novocal)
+        vocals.append(vocal)
+    #this one could be multithreaded somehow
+    print("removing silence from all vocal splits")
+    for i in count:
+        st = dclean.remove_silence(vocal[i], (args.padding*1000))
+        sts.append(st)
+    print("running Whisper text-to-speech")
+    #globally load model
+    model = whisper.load_model(args.model)
+    for i in count:
+        time = dclean.identifynomodel(model, vocals[i], args.padding)
+        times.append(time)
+    #globally delete model
+    model.cpu()
+    del model
+    torch.cuda.empty_cache()
+    gc.collect()
+    print("removing swear words from all songs")
+    #this one could be multithreaded somehow and split up
+    for i in count:
+        times[i] = dclean.timeadjust(times[i],sts[i])
+        dclean.clean(songs[i], novocals[i], times[i], args.format)
+        
+    #load demucs globally? not sure if possible
+    #delete after all complete
+    #load whisper model globally
+    #delete after all complete
+cleansongmemory(songs)
