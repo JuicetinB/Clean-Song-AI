@@ -15,7 +15,7 @@ You may want to build from source if on the latest release of CUDA
 Example install for CUDA version 11.8 on Windows
 [CUDA 11.8 download](https://developer.nvidia.com/cuda-11-8-0-download-archive)
 ```
-pip uninstall torch torchaudio
+pip uninstall torch torchvision torchaudio
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 Alternatively, I believe these programs can detect if there's only a cpu in the system
