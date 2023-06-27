@@ -10,8 +10,12 @@ pip install git+https://github.com/openai/whisper.git
 pip install -U demucs
 ```
 For CUDA and gpu support
+Check CUDA version with 
+```
+nvcc --version
+```
 [PyTorch](https://pytorch.org/get-started/locally/)
-You may want to build from source if on the latest release of CUDA
+You may want to build [from source](https://github.com/pytorch/pytorch#from-source) if on the latest release of CUDA
 Example install for CUDA version 11.8 on Windows
 [CUDA 11.8 download](https://developer.nvidia.com/cuda-11-8-0-download-archive)
 ```
