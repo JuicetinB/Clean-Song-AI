@@ -16,7 +16,7 @@ def identify(vocal,model="small.en",padding=.05):
 
 
 def identifynomodel(model, vocal, padding=.05):
-    output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.6)
+    output = model.transcribe(vocal, word_timestamps=True, prepend_punctuations="", append_punctuations="", no_speech_threshold=.6,)
     lyrics = []
     print('AI generated lyrics:', output['text'])
     for i in output['segments']:

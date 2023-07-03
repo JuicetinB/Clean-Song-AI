@@ -6,6 +6,7 @@ from tkinter import filedialog
 import dlp
 import whisper
 import gc
+import torch
 
 parser = argparse.ArgumentParser(prog='Song cleaning tool', description='Provide a song and most swear words will be censored')
 parser.add_argument('-s', '--song','--path', dest='song', type=str, 
@@ -44,10 +45,12 @@ def cleansongmemory(songs):
         novocal , vocal = dsep.vocals(songs[i])
         novocals.append(novocal)
         vocals.append(vocal)
+    torch.cuda.empty_cache()
+    gc.collect()
     #this one could be multithreaded somehow
     print("removing silence from all vocal splits")
     for i in count:
-        st = dclean.remove_silence(vocal[i], (args.padding*1000))
+        st = dclean.remove_silence(vocals[i], (args.padding*1000))
         sts.append(st)
     print("running Whisper text-to-speech")
     #globally load model
@@ -67,7 +70,5 @@ def cleansongmemory(songs):
         dclean.clean(songs[i], novocals[i], times[i], args.format)
         
     #load demucs globally? not sure if possible
-    #delete after all complete
-    #load whisper model globally
-    #delete after all complete
+
 cleansongmemory(songs)
