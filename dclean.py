@@ -44,6 +44,7 @@ def clean(full,novocal,times,_format):
         censored=backing[start:end]
         clean=clean[:start]+censored+clean[end:]
         clean.export((full.rsplit('.', 1))[0]+f' clean.{_format}',format=_format)
+    return None
 
 def remove_silence(vocal, padding=50):
     raw = AudioSegment.from_file(vocal)
