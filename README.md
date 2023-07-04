@@ -32,28 +32,28 @@ FFmpeg
 
 This program is only tested on windows but might work on other platforms. This is able to run on my personal laptop with 4gb of vram, but you may need to set a smaller whisper model with `-m` if you have less vram
 
-## Main.py
+## Parallel.py (and Main.py)
 Has the ability to use yt-dlp, Demucs, and Whisper to clean a song given a link, a list of links, a path to a song, or, without any relevant arguments, a fileprompt to select songs. Resulting clean songs are placed in the current directory.
 ```
-py [path]/main.py
+py [path]/parallel.py
 ```
 prompts for file selection
 ```
-py [path]/main.py --link "https://www.youtube.com/[video]"
+py [path]/parallel.py --link "https://www.youtube.com/[video]" "https://www.youtube.com/[video]"
 ```
-downloads the video. Also supports multiple links or links to albums or playlists. Just use quotes because "&" can act wierd in terminals.
+downloads both of the videos. Also supports links to albums or playlists. Just use quotes because "&" can act wierd in terminals.
 ```
-py [path]/main.py --song [song path]
+py [path]/parallel.py --song [song path]
 ```
 uses the song file
 ```
-py [path]/main.py --help
+py [path]/parallel.py --help
 ```
 shows all supported arguments
 
 ## Cleaning.py
 Intended for use with UVR or similar software that lacks a CLI.
-Place three files, one with vocal in the name and one with instrumental in the name, into a folder.
+Place three files, one with vocal in the name and one with instrumental in the name, into a folder and provide the path to that folder as an argument.
 ```
 py [path]/cleaning.py --folder [path]
 ```
