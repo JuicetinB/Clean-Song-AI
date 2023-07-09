@@ -23,7 +23,7 @@ def identifynomodel(model, vocal, padding=.05):
         for j in i['words']:
             lyrics.append(j)
     times = []
-    print(lyrics)
+    #print(lyrics)
     for n in lyrics:
         if n['word'].lower().strip() in censor_list:
             print(f'removing the word {n["word"]} from {n["start"]} to {n["end"]} seconds')
