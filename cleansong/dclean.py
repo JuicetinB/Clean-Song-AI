@@ -2,7 +2,7 @@ import whisper
 from pydub import AudioSegment, silence
 import sys
 import os
-from filter import censor_list
+from cleansong.filter import censor_list
 import torch
 import gc
 
