@@ -7,7 +7,7 @@ pip install git+https://github.com/openai/whisper.git
 ```
 [Demucs](https://github.com/facebookresearch/demucs) from Meta Research
 ```
-pip install -U demucs
+pip install -U git+https://github.com/facebookresearch/demucs#egg=demucs
 ```
 For CUDA and gpu support
 Check CUDA version with 
