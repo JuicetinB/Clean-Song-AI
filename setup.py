@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-   name='cleansong',
+   name='clean-song-ai',
    version='1.0',
    description='Exports clean versions of songs',
    author='JuicetinB',
