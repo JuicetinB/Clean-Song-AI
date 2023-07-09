@@ -49,7 +49,7 @@ def clean(full,novocal,times,_format):
 def remove_silence(vocal, padding=50):
     raw = AudioSegment.from_file(vocal)
     #makes list of start and end times; st for silent times
-    st = silence.detect_silence(raw, min_silence_len=2000, silence_thresh=-30)
+    st = silence.detect_silence(raw, min_silence_len=2000, silence_thresh=-35)
     #adds length; total silent time; adjusted time in output file
     i=0
     totals=0
