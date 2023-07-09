@@ -1,9 +1,7 @@
 import argparse
-import dsep
-import dclean
+from cleansong import dlp, dclean, dsep
 import tkinter as tk
 from tkinter import filedialog
-import dlp
 import whisper
 import gc
 import torch

@@ -18,7 +18,7 @@ from pydub import AudioSegment
 import sys
 import os
 import argparse
-from filter import censor_list
+censor_list = ['anus', 'ass', 'assface', 'asshole', 'assholes', 'asswipe', 'bastard', 'bastards', 'biatch', 'bitch', 'bitches', 'blow job', 'caulk', 'caulks', 'clit', 'cock', 'cockhead', 'cock-head', 'cocks', 'cocksucker', 'cock-sucker', 'cum', 'cunt', 'cunts', 'dick', 'dildo', 'dildos', 'dyke', 'fag', 'faggot', 'fags', 'fuck', 'fucker', 'fuckers', 'fucked', 'fuckin', 'fucking', 'fucks', 'ho', 'hoe', 'hoes', 'jackoff', 'jerk-off', 'jizz', 'knockers', 'orgasm', 'penis', 'pussy', 'pussies', 'rectum', 'retard', 'retards', 'semen', 'sex', 'sexy', 'shit', 'bullshit', 'shits', 'shitter', 'shitty', 'skank', 'skanks', 'skanky', 'slut', 'sluts', 'slutty', 'tit', 'vagina', 'vaginas', 'vulva', 'whore', 'bitch', 'blowjob', 'clit', 'fuck', 'shit', 'ass', 'asshole', 'cawk', 'chink', 'clits', 'cock', 'cum', 'cunt', 'fatass', 'masturbate', 'motherfucker', 'motherfucking', 'motherfuckin', 'nigga', 'niggas', "nigga's", 'n***a', 'n***as', 'n****s', 'nigger', 'niggers', 'pussy', 'scrotum', 'tits', 'boobs', 'testicle', 'jackoff', 'wank', 'whore', 'breasts', 'boobies','hell', 'jizz', 'poop', 'porn', 'queef', 'splooge', 'testicle', 'thot','twat', 'wank']
 
 parser = argparse.ArgumentParser(prog='Song cleaning tool', description='Provide a folder with 3 audio files in it resulting from UVR')
 parser.add_argument('-f', '--folder','--path', dest='folder', type=str, nargs='*', 

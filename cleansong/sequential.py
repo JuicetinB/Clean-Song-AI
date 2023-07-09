@@ -1,9 +1,7 @@
 import argparse
-import dsep
-import dclean
+from cleansong import dlp, dclean, dsep
 import tkinter as tk
 from tkinter import filedialog
-import dlp
 
 parser = argparse.ArgumentParser(prog='Song cleaning tool', description='Provide a song and most swear words will be censored')
 parser.add_argument('-s', '--song','--path', dest='song', type=str, 
