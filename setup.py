@@ -7,5 +7,5 @@ setup(
    author='JuicetinB',
    author_email='jabuonato@gmail.com'
    packages=find_packages(),
-   install_requires=['demucs', 'whisper', 'pydub'], #external packages as dependencies
+   install_requires=[], #external packages as dependencies 'demucs', 'whisper', 'pydub'
 )
