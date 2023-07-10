@@ -1,6 +1,11 @@
 # Clean-Song-AI
 This program combines ai vocal remover and automatic speech recognition software into a single CLI python program that removes explicit lyrics from songs.
-## Prerequisites:
+Install
+```
+pip install git+https://github.com/JuicetinB/Clean-Song-AI
+```
+[![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JuicetinB/Clean-Song-AI/blob/main/Clean.ipynb)
+## Dependencies:
 [Whisper](https://github.com/openai/whisper) from OpenAI, preferably with some form of CUDA (requires github install and not pip as pip isn't yet updated to support word timestamps
 ```
 pip install git+https://github.com/openai/whisper.git
@@ -32,28 +37,30 @@ FFmpeg
 
 This program is only tested on windows but might work on other platforms. This is able to run on my personal laptop with 4gb of vram, but you may need to set a smaller whisper model with `-m` if you have less vram
 
-## Parallel.py (and Main.py)
+## __main__.py (and sequential.py)
 Has the ability to use yt-dlp, Demucs, and Whisper to clean a song given a link, a list of links, a path to a song, or, without any relevant arguments, a fileprompt to select songs. Resulting clean songs are placed in the current directory.
 ```
-py [path]/parallel.py
+py -m cleansong --link "youtube-link"
 ```
 prompts for file selection
 ```
-py [path]/parallel.py --link "https://www.youtube.com/[video]" "https://www.youtube.com/[video]"
+py -m cleansong --link "https://www.youtube.com/[video]" "https://www.youtube.com/[video]"
 ```
 downloads both of the videos. Also supports links to albums or playlists. Just use quotes because "&" can act wierd in terminals.
 ```
-py [path]/parallel.py --song [song path]
+py -m cleansong --song [song path]
 ```
 uses the song file
 ```
-py [path]/parallel.py --help
+py -m cleansong --help
 ```
 shows all supported arguments
 
 ## Cleaning.py
 Intended for use with UVR or similar software that lacks a CLI.
 Place three files, one with vocal in the name and one with instrumental in the name, into a folder and provide the path to that folder as an argument.
+
+Currently untested if the command below works
 ```
-py [path]/cleaning.py --folder [path]
+py -m cleansong.cleaning --folder [path]
 ```
