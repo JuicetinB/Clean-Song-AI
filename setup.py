@@ -11,5 +11,6 @@ setup(
        'demucs @ git+https://github.com/facebookresearch/demucs#egg=demucs',
        'whisper @ git+https://github.com/openai/whisper.git',
        'torch'
+       'pydub'
    ], #external packages as dependencies 'demucs', 'whisper', 'pydub'
 )
