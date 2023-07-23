@@ -20,13 +20,16 @@ Check CUDA version with
 nvcc --version
 ```
 [PyTorch](https://pytorch.org/get-started/locally/)
-You may want to build [from source](https://github.com/pytorch/pytorch#from-source) if on the latest release of CUDA
-Example install for CUDA version 11.8 on Windows
-[CUDA 11.8 download](https://developer.nvidia.com/cuda-11-8-0-download-archive)
+You may want to build [from source](https://github.com/pytorch/pytorch#from-source) if on the latest release of CUDA.
+
+Example install for CUDA version 12.1 on Windows
+[CUDA 12.1 download](https://developer.nvidia.com/cuda-12-1-0-download-archive)
 ```
 pip uninstall torch torchvision torchaudio
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
 ```
+![PyTorch CUDA check](https://github.com/JuicetinB/Clean-Song-AI/blob/main/Screenshot%202023-06-27%20114902.png)
+
 Alternatively, I believe these programs can detect if there's only a cpu in the system
 
 [yt-dlp](https://github.com/yt-dlp) (Optional; required for -l or --link argument)
