@@ -4,6 +4,7 @@ Install
 ```
 pip install git+https://github.com/JuicetinB/Clean-Song-AI
 ```
+## Google Colab Notebook:
 [![Open All Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JuicetinB/Clean-Song-AI/blob/main/Clean.ipynb)
 ## Dependencies:
 [Whisper](https://github.com/openai/whisper) from OpenAI, preferably with some form of CUDA (requires github install and not pip as pip isn't yet updated to support word timestamps
@@ -22,7 +23,7 @@ nvcc --version
 [PyTorch](https://pytorch.org/get-started/locally/)
 You may want to build [from source](https://github.com/pytorch/pytorch#from-source) if on the latest release of CUDA.
 
-Example install for CUDA version 12.1 on Windows
+Example install for CUDA version 12.1 on Windows:
 [CUDA 12.1 download](https://developer.nvidia.com/cuda-12-1-0-download-archive)
 ```
 pip uninstall torch torchvision torchaudio
