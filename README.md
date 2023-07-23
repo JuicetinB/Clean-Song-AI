@@ -44,13 +44,13 @@ This program is only tested on windows but might work on other platforms. This i
 ## __main__.py (and sequential.py)
 Has the ability to use yt-dlp, Demucs, and Whisper to clean a song given a link, a list of links, a path to a song, or, without any relevant arguments, a fileprompt to select songs. Resulting clean songs are placed in the current directory.
 ```
-py -m cleansong --link "youtube-link"
+py -m cleansong
 ```
 prompts for file selection
 ```
 py -m cleansong --link "https://www.youtube.com/[video]" "https://www.youtube.com/[video]"
 ```
-downloads both of the videos. Also supports links to albums or playlists. Just use quotes because "&" can act wierd in terminals.
+downloads both of the videos. Also supports links to albums or playlists. Just use quotes because "&" can act weird in terminals.
 ```
 py -m cleansong --song [song path]
 ```
