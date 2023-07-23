@@ -1,6 +1,6 @@
 # Clean-Song-AI
 This program combines ai vocal remover and automatic speech recognition software into a single CLI python program that removes explicit lyrics from songs.
-Install
+## Install locally:
 ```
 pip install git+https://github.com/JuicetinB/Clean-Song-AI
 ```
