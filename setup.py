@@ -10,7 +10,7 @@ setup(
    install_requires=[
        'demucs @ git+https://github.com/facebookresearch/demucs#egg=demucs',
        'openai-whisper @ git+https://github.com/openai/whisper.git',
-       'torch'
-       'pydub'
+       'torch',
+       'pydub',
    ], #external packages as dependencies 'demucs', 'whisper', 'pydub'
 )
